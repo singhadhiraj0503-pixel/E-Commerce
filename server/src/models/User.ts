@@ -1,23 +1,7 @@
 import mongoose, { Model } from "mongoose";
+import type { UserDocument } from "../types/types.js";
 
 export type UserRole = "user" | "admin";
-
-interface Address {
-  fullName: string;
-  address: string;
-  state: string;
-  postalCode: string;
-  isDefault: boolean;
-}
-
-export interface UserDocument {
-  clerkUserId: string;
-  name?: string;
-  email?: string;
-  role: UserRole;
-  points: number;
-  addresses: Address[];
-}
 
 const addressSchema = new mongoose.Schema(
   {
