@@ -17,9 +17,18 @@ const api = axios.create({
 });
 
 api.interceptors.request.use(async (config) => {
-  if (!tokenGetter) return config;
+  if (!tokenGetter) {
+    console.warn("Clerk token getter has not been initialized.");
+    return config;
+  }
 
   const token = await tokenGetter();
+
+  if (!token) {
+    console.warn("No Clerk session token is available.");
+    return config;
+  }
+
   if (token) {
     config.headers = config.headers || {};
     config.headers.Authorization = `Bearer ${token}`;
