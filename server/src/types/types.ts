@@ -16,3 +16,9 @@ export interface UserDocument {
   points: number;
   addresses: Address[];
 }
+
+export type UploadedImage = {
+  url: string;
+  publicId: string;
+  isCover: boolean;
+};
