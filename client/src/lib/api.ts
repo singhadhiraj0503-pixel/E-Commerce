@@ -96,3 +96,17 @@ export const apiPut = async <TResponse, TBody = unknown>(
     throw new Error(getErrorMsg(error), { cause: error });
   }
 };
+
+export const apiDelete = async <T>(url: string) => {
+  try {
+    const response = await api.delete<ApiEnvelope<T>>(url);
+
+    if (response.data.status === "error" || !response.data.data) {
+      throw new Error(response.data.errors?.[0]?.message || "Request Failed");
+    }
+
+    return response.data.data;
+  } catch (error) {
+    throw new Error(getErrorMsg(error), { cause: error });
+  }
+};

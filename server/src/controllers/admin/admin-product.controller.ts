@@ -18,14 +18,15 @@ import { size } from "zod";
 export const getCategories = asyncHandler(
   async (req: Request, res: Response) => {
     const categories = await Category.find().sort({ name: 1 });
+    res.status(200).json(ok(categories));
 
-    res.status(200).json(
-      ok({
-        success: true,
-        message: "Categories fetched Successfully",
-        categories,
-      }),
-    );
+    // res.status(200).json(
+    //   ok({
+    //     success: true,
+    //     message: "Categories fetched Successfully",
+    //     categories,
+    //   }),
+    // );
   },
 );
 
@@ -37,11 +38,17 @@ export const postCategories = asyncHandler(
 
     const category = await Category.create({ name });
 
-    res.status(201).json({
-      success: true,
-      message: "New Category created",
-      category,
-    });
+    res.status(201).json(
+      ok({
+        category,
+      }),
+    );
+
+    // res.status(201).json({
+    //   success: true,
+    //   message: "New Category created",
+    //   category,
+    // });
   },
 );
 
@@ -64,6 +71,39 @@ export const updateCategories = asyncHandler(
         success: true,
         message: "Category updated successfully",
         category,
+      }),
+    );
+  },
+);
+
+export const deleteCategory = asyncHandler(
+  async (req: Request, res: Response) => {
+    const categoryId = req.params.id as string;
+
+    // Find the category first
+    const category = await Category.findById(categoryId);
+
+    requireFound(category, "Category not found", 404);
+
+    // Prevent deleting a category that is assigned to products
+    const productsUsingCategory = await Product.countDocuments({
+      category: categoryId,
+    });
+
+    if (productsUsingCategory > 0) {
+      throw new AppError(
+        409,
+        "Cannot delete this category because products are using it.",
+      );
+    }
+
+    await Category.findByIdAndDelete(categoryId);
+
+    res.status(200).json(
+      ok({
+        success: true,
+        message: "Category deleted successfully",
+        categoryId,
       }),
     );
   },

@@ -1,6 +1,7 @@
 import express from "express";
 import { requireAdmin } from "../../middleware/auth.js";
 import {
+  deleteCategory,
   editProducts,
   fetchProductById,
   fetchProducts,
@@ -31,6 +32,9 @@ adminProductRouter.post("/categories", postCategories);
 
 // Update categories
 adminProductRouter.put("/categories/:id", updateCategories);
+
+// Delete Categories
+adminProductRouter.delete("/categories/:id", deleteCategory);
 
 // Fetch products
 adminProductRouter.get("/products", fetchProducts);

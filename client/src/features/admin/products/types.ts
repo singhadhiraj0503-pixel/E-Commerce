@@ -70,3 +70,9 @@ export type UpdateProductBody = {
   existingImages?: ProductImage[];
   coverImagePublicId?: string;
 };
+
+export type DeleteCategoryResponse = {
+  success: boolean;
+  message: string;
+  categoryId: string;
+};

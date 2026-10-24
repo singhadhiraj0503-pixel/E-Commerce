@@ -1,8 +1,9 @@
-import { apiGet, apiPost, apiPut } from "@/lib/api";
+import { apiDelete, apiGet, apiPost, apiPut } from "@/lib/api";
 import type {
   Category,
   CreateCategoryBody,
   CreateProductBody,
+  DeleteCategoryResponse,
   Product,
   UpdateCategoryBody,
   UpdateProductBody,
@@ -13,8 +14,15 @@ export const getAdminCategories = async () => {
   return apiGet<Category[]>("/api/admin/categories");
 };
 
+// export const createAdminCategories = async (body: CreateCategoryBody) => {
+//   return apiPost<Category, CreateCategoryBody>("/api/admin/categories", body);
+// };
+
 export const createAdminCategories = async (body: CreateCategoryBody) => {
-  return apiPost<Category, CreateCategoryBody>("/api/admin/categories", body);
+  return apiPost<{ category: Category }, CreateCategoryBody>(
+    "/api/admin/categories",
+    body,
+  );
 };
 
 export const updateAdminCategories = async (
@@ -24,6 +32,12 @@ export const updateAdminCategories = async (
   return apiPut<Category, UpdateCategoryBody>(
     `/api/admin/categories/${categoryId}`,
     body,
+  );
+};
+
+export const deleteAdminCategory = async (categoryId: string) => {
+  return apiDelete<DeleteCategoryResponse>(
+    `/api/admin/categories/${categoryId}`,
   );
 };
 

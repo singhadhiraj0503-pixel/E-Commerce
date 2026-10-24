@@ -17,19 +17,40 @@ const actionsWrapClass = "flex flex-col gap-3 sm:flex-row";
 
 const addIconClass = "mr-2 h-4 w-4";
 
-const ProductsToolbar = () => {
+type ProductsToolbarProps = {
+  search: string;
+  onSearchChange: (value: string) => void;
+  onManageCategories: () => void;
+  onAddProduct: () => void;
+};
+
+const ProductsToolbar = ({
+  search,
+  onSearchChange,
+  onManageCategories,
+  onAddProduct,
+}: ProductsToolbarProps) => {
   return (
     <div className={wrapperClass}>
       <div className={searchWrapClass}>
         <Search className={searchIconClass} />
-        <Input placeholder="Search Products..." className={searchInputClass} />
+        <Input
+          value={search}
+          onChange={(event) => onSearchChange(event.target.value)}
+          placeholder="Search Products..."
+          className={searchInputClass}
+        />
       </div>
 
       <div className={actionsWrapClass}>
-        <Button className="cursor-pointer" variant={"outline"}>
+        <Button
+          onClick={onManageCategories}
+          className="cursor-pointer"
+          variant={"outline"}
+        >
           Manage Category
         </Button>
-        <Button className="cursor-pointer">
+        <Button className="cursor-pointer" onClick={onAddProduct}>
           <Plus className={addIconClass} />
           Add Product
         </Button>
