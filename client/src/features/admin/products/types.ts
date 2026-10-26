@@ -76,3 +76,19 @@ export type DeleteCategoryResponse = {
   message: string;
   categoryId: string;
 };
+
+export type ProductFormState = {
+  title: string;
+  description: string;
+  category: string;
+  brand: string;
+  colors: string[];
+  sizes: string[];
+  price: string;
+  salePercentage: string;
+  stock: string;
+  status: ProductStatus;
+  existingImages: ProductImage[];
+  newFiles: File[];
+  coverImagePublicId: string;
+};

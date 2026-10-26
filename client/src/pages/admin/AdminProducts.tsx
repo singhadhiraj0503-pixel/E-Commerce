@@ -1,4 +1,5 @@
 import CategoryDialog from "@/components/admin/products/CategoryDialog";
+import ProductDialog from "@/components/admin/products/ProductDialog";
 import ProductsToolbar from "@/components/admin/products/ProductsToolbar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useAdminProducts } from "@/features/admin/products/use-admin-products";
@@ -53,6 +54,20 @@ const AdminProducts = () => {
         categories={categories}
         onSaved={refreshAll}
         onDeleteCategory={removeCategory}
+      />
+
+      <ProductDialog
+        open={productDialogOpen}
+        onOpenChange={(open) => {
+          if (!open) {
+            closeProductDialog();
+            return;
+          }
+          setProductDialogOpen(true);
+        }}
+        categories={categories}
+        product={editingProduct}
+        onSaved={refreshAll}
       />
     </div>
   );
