@@ -42,6 +42,7 @@ export const useAdminProducts = () => {
       setProducts(data ?? []);
     } catch (error) {
       console.error("fetching failed", error);
+      setProducts([]);
     } finally {
       setLoading(false);
     }
@@ -49,6 +50,11 @@ export const useAdminProducts = () => {
 
   const openCreateDialog = () => {
     setEditingProduct(null);
+    setProductDialogOpen(true);
+  };
+
+  const openEditDialog = (product: Product) => {
+    setEditingProduct(product);
     setProductDialogOpen(true);
   };
 
@@ -88,5 +94,6 @@ export const useAdminProducts = () => {
     editingProduct,
     openCreateDialog,
     closeProductDialog,
+    openEditDialog,
   };
 };

@@ -1,6 +1,7 @@
+import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import type { ProductImage } from "@/features/admin/products/types";
-import { ImagePlus } from "lucide-react";
+import { ImagePlus, Star, X } from "lucide-react";
 import React, { useEffect, useMemo } from "react";
 
 const wrapperClass = "space-y-4";
@@ -46,6 +47,8 @@ type ImagePickerProps = {
   newFiles: File[];
   coverImagePublicId: string;
   onFilesAdd: (files: FileList | null) => void;
+  onExistingRemove: (publicId: string) => void;
+  onCoverImageChange: (publicId: string) => void;
 };
 
 const ImagePicker = ({
@@ -53,6 +56,8 @@ const ImagePicker = ({
   newFiles,
   coverImagePublicId,
   onFilesAdd,
+  onExistingRemove,
+  onCoverImageChange,
 }: ImagePickerProps) => {
   const previewUrls = useMemo(() => {
     return newFiles.map((file) => ({ file, url: URL.createObjectURL(file) }));
@@ -84,7 +89,44 @@ const ImagePicker = ({
         />
       </Label>
 
-      {existingImages.length > 0 ? <div>Do something...</div> : null}
+      {existingImages.length > 0 ? (
+        <div className={sectionClass}>
+          <p className={sectionTitleClass}>Existing Images</p>
+
+          <div className={gridClass}>
+            {existingImages.map((image) => {
+              const isCover = coverImagePublicId === image.publicId;
+
+              return (
+                <div key={image.publicId} className={imageCardClass}>
+                  <img src={image.url} alt="product" className={imageClass} />
+
+                  <div className={imageActionsClass}>
+                    <Button
+                      type="button"
+                      size={"sm"}
+                      variant={isCover ? "default" : "secondary"}
+                      onClick={() => onCoverImageChange(image.publicId)}
+                    >
+                      <Star className={starIconClass} />
+                      {isCover ? "Cover" : "Set Cover"}
+                    </Button>
+
+                    <Button
+                      type="button"
+                      size={"icon"}
+                      variant={"ghost"}
+                      onClick={() => onExistingRemove(image.publicId)}
+                    >
+                      <X className={removeIconClass} />
+                    </Button>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      ) : null}
 
       {previewUrls.length > 0 ? (
         <div className={sectionClass}>

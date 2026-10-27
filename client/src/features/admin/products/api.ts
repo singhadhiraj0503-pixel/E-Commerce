@@ -4,6 +4,7 @@ import type {
   CreateCategoryBody,
   CreateProductBody,
   DeleteCategoryResponse,
+  GetAdminProductsResponse,
   Product,
   UpdateCategoryBody,
   UpdateProductBody,
@@ -13,10 +14,6 @@ import type {
 export const getAdminCategories = async () => {
   return apiGet<Category[]>("/api/admin/categories");
 };
-
-// export const createAdminCategories = async (body: CreateCategoryBody) => {
-//   return apiPost<Category, CreateCategoryBody>("/api/admin/categories", body);
-// };
 
 export const createAdminCategories = async (body: CreateCategoryBody) => {
   return apiPost<{ category: Category }, CreateCategoryBody>(
@@ -45,9 +42,11 @@ export const deleteAdminCategory = async (categoryId: string) => {
 export const getAdminProducts = async (search?: string) => {
   const query = search?.trim()
     ? `/api/admin/products?search=${encodeURIComponent(search.trim())}`
-    : `/api/admin/products`;
+    : "/api/admin/products";
 
-  return apiGet<Product[]>(query);
+  const response = await apiGet<GetAdminProductsResponse>(query);
+
+  return response.products;
 };
 
 export const getAdminProductById = async (productId: string) => {

@@ -92,3 +92,9 @@ export type ProductFormState = {
   newFiles: File[];
   coverImagePublicId: string;
 };
+
+export type GetAdminProductsResponse = {
+  success: boolean;
+  message: string;
+  products: Product[];
+};

@@ -1,5 +1,6 @@
 import CategoryDialog from "@/components/admin/products/CategoryDialog";
 import ProductDialog from "@/components/admin/products/ProductDialog";
+import ProductsTable from "@/components/admin/products/ProductsTable";
 import ProductsToolbar from "@/components/admin/products/ProductsToolbar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useAdminProducts } from "@/features/admin/products/use-admin-products";
@@ -31,6 +32,7 @@ const AdminProducts = () => {
     closeProductDialog,
     refreshAll,
     removeCategory,
+    openEditDialog,
   } = useAdminProducts();
 
   return (
@@ -45,7 +47,13 @@ const AdminProducts = () => {
             onAddProduct={openCreateDialog}
           />
         </CardHeader>
-        <CardContent>Table</CardContent>
+        <CardContent className={cardContentClass}>
+          <ProductsTable
+            products={products}
+            onEdit={openEditDialog}
+            loading={loading}
+          />
+        </CardContent>
       </Card>
 
       <CategoryDialog

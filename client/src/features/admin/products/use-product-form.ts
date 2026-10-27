@@ -108,6 +108,29 @@ export const useProductForm = ({
     }));
   };
 
+  const removeExistingImage = async (publicId: string) => {
+    setForm((prev) => {
+      const nextImages = prev.existingImages.filter(
+        (image) => image.publicId !== publicId,
+      );
+
+      const nextCoverImageId =
+        prev.coverImagePublicId === publicId
+          ? (nextImages[0]?.publicId ?? "")
+          : prev.coverImagePublicId;
+
+      return {
+        ...prev,
+        existingImages: nextImages,
+        coverImagePublicId: nextCoverImageId,
+      };
+    });
+  };
+
+  const changeCoverImage = (publicId: string) => {
+    updateField("coverImagePublicId", publicId);
+  };
+
   const submit = async () => {
     if (!form.title.trim() || !form.description.trim() || !form.category.trim())
       return;
@@ -171,5 +194,7 @@ export const useProductForm = ({
     addFiles,
     submit,
     updateField,
+    removeExistingImage,
+    changeCoverImage,
   };
 };

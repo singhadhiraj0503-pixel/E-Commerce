@@ -73,6 +73,8 @@ const ProductDialog = ({
     removeColor,
     addFiles,
     submit,
+    removeExistingImage,
+    changeCoverImage,
   } = useProductForm({
     open,
     onClose: () => onOpenChange(false),
@@ -86,7 +88,9 @@ const ProductDialog = ({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className={dialogContentClass}>
         <DialogHeader>
-          <DialogTitle>Add Products</DialogTitle>
+          <DialogTitle>
+            {isEditMode ? "Update Product" : "Create Product"}
+          </DialogTitle>
         </DialogHeader>
         <div className={contentWrapClass}>
           <div className={twoColumnGridClass}>
@@ -134,7 +138,7 @@ const ProductDialog = ({
           </div>
 
           <div className={twoColumnGridClass}>
-            <div className={fieldGroupClass}>
+            {/* <div className={fieldGroupClass}>
               <Label>Category</Label>
               <Select
                 value={form.category}
@@ -146,11 +150,35 @@ const ProductDialog = ({
                 <SelectContent>
                   {categories.map((category) => {
                     return (
-                      <SelectItem key={category._id} value={category.name}>
+                      <SelectItem key={category._id} value={category._id}>
                         {category.name}
                       </SelectItem>
                     );
                   })}
+                </SelectContent>
+              </Select>
+            </div> */}
+            <div className={fieldGroupClass}>
+              <Label>Category</Label>
+
+              <Select
+                value={form.category}
+                onValueChange={(value) => updateField("category", value)}
+              >
+                <SelectTrigger>
+                  <SelectValue placeholder="Select category">
+                    {categories.find(
+                      (category) => category._id === form.category,
+                    )?.name ?? "Select category"}
+                  </SelectValue>
+                </SelectTrigger>
+
+                <SelectContent>
+                  {categories.map((category) => (
+                    <SelectItem key={category._id} value={category._id}>
+                      {category.name}
+                    </SelectItem>
+                  ))}
                 </SelectContent>
               </Select>
             </div>
@@ -232,6 +260,8 @@ const ProductDialog = ({
             newFiles={form.newFiles}
             coverImagePublicId={form.coverImagePublicId}
             onFilesAdd={addFiles}
+            onExistingRemove={removeExistingImage}
+            onCoverImageChange={changeCoverImage}
           />
 
           <div className={actionsRowClass}>
@@ -243,7 +273,17 @@ const ProductDialog = ({
               Cancel
             </Button>
 
-            <Button className={"cursor-pointer"}>Create Product</Button>
+            <Button
+              onClick={submit}
+              disabled={saving}
+              className={"cursor-pointer"}
+            >
+              {saving
+                ? "Saving ..."
+                : isEditMode
+                  ? "Update Product"
+                  : "Create Product"}
+            </Button>
           </div>
         </div>
       </DialogContent>
