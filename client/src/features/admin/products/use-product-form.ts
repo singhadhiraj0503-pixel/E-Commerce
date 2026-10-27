@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import type { Product, ProductFormState, ProductImage } from "./types";
-import { clearPress } from "node_modules/@base-ui/react/internals/reason-parts.d.mts";
 import { createAdminProduct, updateAdminProduct } from "./api";
 
 type UseProductFormOptions = {

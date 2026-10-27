@@ -1,6 +1,7 @@
 import { Label } from "@/components/ui/label";
+import type { ProductImage } from "@/features/admin/products/types";
 import { ImagePlus } from "lucide-react";
-import React from "react";
+import React, { useEffect, useMemo } from "react";
 
 const wrapperClass = "space-y-4";
 
@@ -40,7 +41,31 @@ const removeIconClass = "h-4 w-4";
 
 const fileNameClass = "p-2 text-xs text-muted-foreground";
 
-const ImagePicker = () => {
+type ImagePickerProps = {
+  existingImages: ProductImage[];
+  newFiles: File[];
+  coverImagePublicId: string;
+  onFilesAdd: (files: FileList | null) => void;
+};
+
+const ImagePicker = ({
+  existingImages,
+  newFiles,
+  coverImagePublicId,
+  onFilesAdd,
+}: ImagePickerProps) => {
+  const previewUrls = useMemo(() => {
+    return newFiles.map((file) => ({ file, url: URL.createObjectURL(file) }));
+  }, [newFiles]);
+
+  useEffect(() => {
+    return () => {
+      previewUrls.forEach((item) => URL.revokeObjectURL(item.url));
+    };
+  }, [previewUrls]);
+
+  // console.log(previewUrls, "Preview URLS");
+
   return (
     <div className={wrapperClass}>
       <div className={headerClass}>
@@ -55,8 +80,34 @@ const ImagePicker = () => {
           accept="image/*"
           multiple
           className={hiddenInputClass}
+          onChange={(event) => onFilesAdd(event.target.files)}
         />
       </Label>
+
+      {existingImages.length > 0 ? <div>Do something...</div> : null}
+
+      {previewUrls.length > 0 ? (
+        <div className={sectionClass}>
+          <p className={sectionTitleClass}>New Uploads</p>
+          <div className={gridClass}>
+            {previewUrls.map((previewItem, index) => {
+              return (
+                <div
+                  key={`${previewItem.file.name}-${index}`}
+                  className={imageCardClass}
+                >
+                  <img
+                    src={previewItem.url}
+                    alt={previewItem.file.name}
+                    className={imageClass}
+                  />
+                  <div className={fileNameClass}>{previewItem.file.name}</div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 };

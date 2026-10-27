@@ -14,7 +14,12 @@ const gridClass = "grid grid-cols-4 gap-2";
 
 const sizeButtonClass = "h-11";
 
-const SizeSelector = () => {
+type SizeSelectorProps = {
+  selectedSizes: string[];
+  onToggle: (size: string) => void;
+};
+
+const SizeSelector = ({ selectedSizes, onToggle }: SizeSelectorProps) => {
   return (
     <div className={wrapperClass}>
       <div className={headerClass}>
@@ -23,8 +28,16 @@ const SizeSelector = () => {
 
       <div className={gridClass}>
         {SIZE_OPTIONS.map((sizeItem) => {
+          const active = selectedSizes.includes(sizeItem);
+
           return (
-            <Button key={sizeItem} type="button" variant={"outline"}>
+            <Button
+              onClick={() => onToggle(sizeItem)}
+              className={sizeButtonClass}
+              key={sizeItem}
+              type="button"
+              variant={active ? "default" : "outline"}
+            >
               {sizeItem}
             </Button>
           );
