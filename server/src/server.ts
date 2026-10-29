@@ -9,6 +9,9 @@ import { errorHandler } from "./middleware/errorHandler.js";
 import { clerkMiddleware, getAuth } from "@clerk/express";
 import authRouter from "./routes/auth/auth.route.js";
 import { adminProductRouter } from "./routes/admin/product.routes.js";
+import { customerProductRouter } from "./routes/customer/product.routes.js";
+import { customerAddressRouter } from "./routes/customer/address.routes.js";
+import { adminPromoRouter } from "./routes/admin/promo.routes.js";
 
 const mainEntryFunction = async () => {
   await connectToDB();
@@ -58,8 +61,14 @@ const mainEntryFunction = async () => {
     });
   });
 
+  // Admin Routes
   app.use("/api/auth", authRouter);
   app.use("/api/admin", adminProductRouter);
+  app.use("/api/admin", adminPromoRouter);
+
+  // Customer routes
+  app.use("/api/customer", customerProductRouter);
+  app.use("/api/customer", customerAddressRouter);
 
   app.use(notFOund);
   app.use(errorHandler);

@@ -1,4 +1,32 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Schema, Types, type HydratedDocument } from "mongoose";
+
+export type ProductImage = {
+  url: string;
+  publicId: string;
+  isCover: boolean;
+};
+
+export type ProductSize = "S" | "M" | "L" | "XL";
+export type ProductStatus = "active" | "inactive";
+
+export type Product = {
+  title: string;
+  description: string;
+  category: Types.ObjectId;
+  brand: string;
+  stock: number;
+  images: ProductImage[];
+  colors: string[];
+  sizes: ProductSize[];
+  price: number;
+  salePercentage: number;
+  status: ProductStatus;
+  createdBy: Types.ObjectId;
+  createdAt: Date;
+  updatedAt: Date;
+};
+
+export type ProductDocument = HydratedDocument<Product>;
 
 const productImageSchema = new mongoose.Schema(
   {
@@ -84,4 +112,4 @@ const productSchema = new mongoose.Schema(
 
 export const Product: mongoose.Model<any> =
   (mongoose.models.Product as mongoose.Model<any> | undefined) ??
-  mongoose.model("Product", productSchema);
+  mongoose.model<Product>("Product", productSchema);
