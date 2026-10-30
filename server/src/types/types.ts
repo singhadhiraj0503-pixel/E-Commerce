@@ -75,3 +75,29 @@ export type PromoDbItem = {
   endsAt: Date;
   createdAt?: Date;
 };
+
+export type ProductPreview = {
+  _id: string;
+  title: string;
+  brand: string;
+  price: number;
+  salePercentage: number;
+  images: Array<{
+    url: string;
+    isCover?: boolean;
+  }>;
+};
+
+export type CartPreviewItem = {
+  product: ProductPreview | null;
+  quantity: number;
+  color?: string;
+  size?: ProductSize;
+};
+
+export type SyncCartItemInput = {
+  productId?: string;
+  quantity?: number;
+  color?: string;
+  size?: ProductSize;
+};

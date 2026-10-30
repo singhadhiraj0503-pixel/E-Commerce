@@ -12,6 +12,7 @@ import { adminProductRouter } from "./routes/admin/product.routes.js";
 import { customerProductRouter } from "./routes/customer/product.routes.js";
 import { customerAddressRouter } from "./routes/customer/address.routes.js";
 import { adminPromoRouter } from "./routes/admin/promo.routes.js";
+import { customerPromoRouter } from "./routes/customer/promo.routes.js";
 
 const mainEntryFunction = async () => {
   await connectToDB();
@@ -69,6 +70,7 @@ const mainEntryFunction = async () => {
   // Customer routes
   app.use("/api/customer", customerProductRouter);
   app.use("/api/customer", customerAddressRouter);
+  app.use("/api/customer", customerPromoRouter);
 
   app.use(notFOund);
   app.use(errorHandler);
