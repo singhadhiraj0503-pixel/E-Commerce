@@ -4,9 +4,12 @@ import {
   cartSync,
   decreaseCartItem,
   deleteCartItem,
+  deleteWishlist,
   getCartItems,
+  getWishlist,
   increaseCartItem,
   postCartItems,
+  postWishlist,
 } from "../../controllers/customer/cart-wishlist.controller.js";
 
 export const customerCartWishlistRouter = express.Router();
@@ -36,3 +39,12 @@ customerCartWishlistRouter.delete("/cart/items/:productId", deleteCartItem);
 
 // Cart sync
 customerCartWishlistRouter.post("/cart/sync", cartSync);
+
+// Get Wishlist
+customerCartWishlistRouter.get("/wishlist", getWishlist);
+
+// Post Wishlist
+customerCartWishlistRouter.post("/wishlist/items", postWishlist);
+
+// Delete Wishlist
+customerCartWishlistRouter.delete("/wishlist/items/:productId", deleteWishlist);

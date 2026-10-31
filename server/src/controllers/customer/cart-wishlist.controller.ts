@@ -12,6 +12,8 @@ import type {
 import { requireFound, requireText } from "../../utils/helpers.js";
 import { AppError } from "../../utils/AppError.js";
 import { Product, type ProductSize } from "../../models/Product.js";
+import { Wishlist } from "../../models/Wishlist.js";
+import type { Types } from "mongoose";
 
 // helper functions
 
@@ -145,6 +147,24 @@ const isSameCartItem = (
     (item.color || "") === (color || "") &&
     (item.size || "") === (size || "")
   );
+};
+
+const getWishlistResponse = async (userId: string) => {
+  const wishlist = await Wishlist.findOne({ user: userId }).populate(
+    "products",
+    "title brand price salepercentage images",
+  );
+
+  const products = (wishlist?.products ||
+    []) as unknown as Array<ProductPreview | null>;
+
+  const items = products.flatMap((productItem) => {
+    if (!productItem) return [];
+
+    return [formatProduct(productItem)];
+  });
+
+  return { items };
 };
 
 // Cart Controllers
@@ -448,3 +468,66 @@ export const cartSync = asyncHandler(async (req: Request, res: Response) => {
 });
 
 // Wishlist Controllers
+export const getWishlist = asyncHandler(async (req: Request, res: Response) => {
+  const dbUser = await getDbUserFromReq(req);
+
+  res.status(200).json(ok(await getWishlistResponse(String(dbUser._id))));
+});
+
+export const postWishlist = asyncHandler(
+  async (req: Request, res: Response) => {
+    const dbUser = await getDbUserFromReq(req);
+    const productId = String(req.body.productId || "").trim();
+
+    requireText(productId, "Product id is required");
+
+    const product = await Product.findOne({
+      _id: productId,
+      status: "active",
+    });
+
+    const foundProduct = requireFound(product, "Product not found", 404);
+
+    let wishlist = await Wishlist.findOne({ user: dbUser._id });
+
+    if (!wishlist) {
+      wishlist = await Wishlist.create({
+        user: dbUser._id,
+        products: [],
+      });
+    }
+
+    const exists = wishlist.products.some(
+      (item: Types.ObjectId) => String(item) === String(foundProduct._id),
+    );
+
+    if (!exists) {
+      wishlist.products.push(foundProduct._id);
+      await wishlist.save();
+    }
+
+    res.status(201).json(ok(await getWishlistResponse(String(dbUser._id))));
+  },
+);
+
+export const deleteWishlist = asyncHandler(
+  async (req: Request, res: Response) => {
+    const dbUser = await getDbUserFromReq(req);
+    const productId = String(req.params.productId || "").trim();
+
+    requireText(productId, "Product id is required");
+
+    let wishlist = await Wishlist.findOne({ user: dbUser._id });
+    if (!wishlist) {
+      res.status(200).json(ok({ items: [] }));
+      return;
+    }
+
+    wishlist.products = wishlist.products.filter(
+      (item: Types.ObjectId) => String(item) !== productId,
+    );
+
+    await wishlist.save();
+    res.status(200).json(ok(await getWishlistResponse(String(dbUser._id))));
+  },
+);
