@@ -1,6 +1,7 @@
 import type { HydratedDocument, Types } from "mongoose";
 import type { UserRole } from "../models/User.js";
 import type { ProductSize } from "../models/Product.js";
+import type { OrderStatus, PaymentStatus } from "../models/Order.js";
 
 export interface Address {
   fullName: string;
@@ -141,4 +142,16 @@ export type PromoRow = {
   minimumOrderValue: number;
   startsAt: Date;
   endsAt: Date;
+};
+
+export type CustomerOrderRow = {
+  _id: Types.ObjectId;
+  totalItems: number;
+  totalAmount: number;
+  paymentStatus: PaymentStatus;
+  orderStatus: OrderStatus;
+  paidAt?: Date | null;
+  deliveredAt?: Date | null;
+  returnedAt?: Date | null;
+  createdAt: Date;
 };
