@@ -15,10 +15,10 @@ adminPromoRouter.use(requireAdmin);
 adminPromoRouter.get("/promos", getPromos);
 
 // post promo
-adminPromoRouter.post("/promo", postPromos);
+adminPromoRouter.post("/promos", postPromos);
 
 // update promo
-adminPromoRouter.patch("/promo/:promoId", updatePromo);
+adminPromoRouter.patch("/promos/:promoId", updatePromo);
 
 // delete promo
-adminPromoRouter.delete("/promo/:promoId", deletePromo);
+adminPromoRouter.delete("/promos/:promoId", deletePromo);

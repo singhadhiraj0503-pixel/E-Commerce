@@ -97,9 +97,29 @@ export const apiPut = async <TResponse, TBody = unknown>(
   }
 };
 
-export const apiDelete = async <T>(url: string) => {
+export const apiPatch = async <TResponse, TBody = unknown>(
+  url: string,
+  body?: TBody,
+  config?: AxiosRequestConfig,
+) => {
   try {
-    const response = await api.delete<ApiEnvelope<T>>(url);
+    const response = await api.patch<ApiEnvelope<TResponse>>(url, body, config);
+    if (response.data.status === "error" || !response.data.data) {
+      throw new Error(response.data.errors?.[0]?.message || "Request Failed");
+    }
+
+    return response.data.data;
+  } catch (error) {
+    throw new Error(getErrorMsg(error), { cause: error });
+  }
+};
+
+export const apiDelete = async <TResponse>(
+  url: string,
+  config?: AxiosRequestConfig,
+) => {
+  try {
+    const response = await api.delete<ApiEnvelope<TResponse>>(url, config);
 
     if (response.data.status === "error" || !response.data.data) {
       throw new Error(response.data.errors?.[0]?.message || "Request Failed");

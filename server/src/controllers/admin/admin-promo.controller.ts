@@ -112,6 +112,8 @@ export const updatePromo = asyncHandler(async (req: Request, res: Response) => {
   foundPromo.startsAt = payload.startsAt;
   foundPromo.endsAt = payload.endsAt;
 
+  await foundPromo.save();
+
   res.status(201).json(ok({ items: await getAllPromos() }));
 });
 
