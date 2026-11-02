@@ -19,6 +19,8 @@ import { customerOrderRouter } from "./routes/customer/orders.routes.js";
 import { customerCheckoutWithPointsRouter } from "./routes/customer/checkout-with-points.routes.js";
 import { adminOrderRouter } from "./routes/admin/orders.routes.js";
 import { adminSettingsRouter } from "./routes/admin/settings.routes.js";
+import { adminDashboardRouter } from "./routes/admin/dashboard.routes.js";
+import { customerHomeRouter } from "./routes/customer/home.routes.js";
 
 const mainEntryFunction = async () => {
   await connectToDB();
@@ -74,6 +76,7 @@ const mainEntryFunction = async () => {
   app.use("/api/admin", adminPromoRouter);
   app.use("/api/admin", adminOrderRouter);
   app.use("/api/admin", adminSettingsRouter);
+  app.use("/api/admin", adminDashboardRouter);
 
   // Customer routes
   app.use("/api/customer", customerProductRouter);
@@ -83,6 +86,7 @@ const mainEntryFunction = async () => {
   app.use("/api/customer", customerCheckoutRouter);
   app.use("/api/customer", customerOrderRouter);
   app.use("/api/customer", customerCheckoutWithPointsRouter);
+  app.use("/api/customer", customerHomeRouter);
 
   app.use(notFOund);
   app.use(errorHandler);

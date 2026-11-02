@@ -163,3 +163,19 @@ export type AdminBannerItem = {
   imagePublicId: string;
   createdAt: string;
 };
+
+export type TotalSaleRow = {
+  _id: null;
+  totalSales: number;
+};
+
+export type BannerRow = {
+  _id: Types.ObjectId;
+  imageUrl: string;
+  createdAt: Date;
+};
+
+export type CategoryRow = {
+  _id: Types.ObjectId;
+  name: string;
+};
