@@ -115,6 +115,7 @@ export type CheckoutUserRow = {
   _id: Types.ObjectId;
   name?: string;
   email?: string;
+  points?: number;
   addresses: UserAddressRow[];
 };
 
