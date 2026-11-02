@@ -17,6 +17,8 @@ import { customerCartWishlistRouter } from "./routes/customer/cart-wishlist.rout
 import { customerCheckoutRouter } from "./routes/customer/checkout.routes.js";
 import { customerOrderRouter } from "./routes/customer/orders.routes.js";
 import { customerCheckoutWithPointsRouter } from "./routes/customer/checkout-with-points.routes.js";
+import { adminOrderRouter } from "./routes/admin/orders.routes.js";
+import { adminSettingsRouter } from "./routes/admin/settings.routes.js";
 
 const mainEntryFunction = async () => {
   await connectToDB();
@@ -70,6 +72,8 @@ const mainEntryFunction = async () => {
   app.use("/api/auth", authRouter);
   app.use("/api/admin", adminProductRouter);
   app.use("/api/admin", adminPromoRouter);
+  app.use("/api/admin", adminOrderRouter);
+  app.use("/api/admin", adminSettingsRouter);
 
   // Customer routes
   app.use("/api/customer", customerProductRouter);
