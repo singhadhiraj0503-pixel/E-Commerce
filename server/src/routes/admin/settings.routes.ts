@@ -23,7 +23,7 @@ adminSettingsRouter.get("/settings/banners", getBannerImages);
 
 // upload banner images
 adminSettingsRouter.post(
-  "settings/banners",
+  "/settings/banners",
   upload.array("images", 10),
   uploadBannerImages,
 );
