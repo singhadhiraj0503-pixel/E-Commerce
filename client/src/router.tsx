@@ -13,6 +13,7 @@ import AdminProducts from "./pages/admin/AdminProducts";
 import AdminCoupons from "./pages/admin/AdminCoupons";
 import AdminOrders from "./pages/admin/AdminOrders";
 import AdminSettings from "./pages/admin/AdminSettings";
+import Collections from "./pages/customer/Collections";
 
 export const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <Home />,
+      },
+      {
+        path: "collections",
+        element: <Collections />,
       },
       {
         element: <PublicOnlyLayout />,
@@ -34,6 +39,10 @@ export const router = createBrowserRouter([
             path: "sign-up/*",
             element: <SignUpPage />,
           },
+          // {
+          //   path: "collections",
+          //   element: <Collections />,
+          // },
         ],
       },
       {
@@ -85,3 +94,87 @@ export const router = createBrowserRouter([
     ],
   },
 ]);
+
+// export const router = createBrowserRouter([
+//   {
+//     path: "/",
+//     element: <Customerlayout />,
+//     children: [
+//       {
+//         index: true,
+//         element: <Home />,
+//       },
+//       {
+//         element: <PublicOnlyLayout />,
+//         children: [
+//           {
+//             path: "sign-in/*",
+//             element: <SignInPage />,
+//           },
+//           {
+//             path: "sign-up/*",
+//             element: <SignUpPage />,
+//           },
+//           {
+//             path: "collections",
+//             element: <Collections />,
+//           },
+//           // {
+//           //   path: "collection/:id",
+//           //   element: <CollectionDetails />,
+//           // },
+//         ],
+//       },
+//       {
+//         element: <ProtectedLayout />,
+//         children: [
+//           // {
+//           //   path: "order-success",
+//           //   element: <CustomerOrderSuccessPage />,
+//           // },
+//           {
+//             path: "profile",
+//             element: <Profile />,
+//           },
+//         ],
+//       },
+//     ],
+//   },
+//   {
+//     element: <ProtectedLayout />,
+//     children: [
+//       {
+//         element: <RoleGuardLayout allow={["admin"]} />,
+//         children: [
+//           {
+//             path: "/admin",
+//             element: <AdminLayout />,
+
+//             children: [
+//               {
+//                 index: true,
+//                 element: <AdminDashboard />,
+//               },
+//               {
+//                 path: "products",
+//                 element: <AdminProducts />,
+//               },
+//               {
+//                 path: "coupons",
+//                 element: <AdminCoupons />,
+//               },
+//               {
+//                 path: "orders",
+//                 element: <AdminOrders />,
+//               },
+//               {
+//                 path: "settings",
+//                 element: <AdminSettings />,
+//               },
+//             ],
+//           },
+//         ],
+//       },
+//     ],
+//   },
+// ]);

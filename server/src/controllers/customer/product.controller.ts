@@ -39,10 +39,10 @@ export const getAllListedProducts = asyncHandler(
       query.brand = brand;
     }
     if (color) {
-      query.color = color;
+      query.colors = color;
     }
     if (size) {
-      query.size = size;
+      query.sizes = size;
     }
 
     let sortOption: Record<string, 1 | -1> = { createdAt: -1 };
