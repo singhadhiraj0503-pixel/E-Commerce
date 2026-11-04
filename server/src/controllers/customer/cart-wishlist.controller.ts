@@ -152,7 +152,7 @@ const isSameCartItem = (
 const getWishlistResponse = async (userId: string) => {
   const wishlist = await Wishlist.findOne({ user: userId }).populate(
     "products",
-    "title brand price salepercentage images",
+    "title brand price salePercentage images",
   );
 
   const products = (wishlist?.products ||

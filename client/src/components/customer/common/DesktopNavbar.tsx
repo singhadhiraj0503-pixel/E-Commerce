@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Heart,
   LogIn,
   LogOut,
   ShoppingBag,
+  ShoppingBasket,
   ShoppingCart,
   Store,
   User,
@@ -20,6 +21,9 @@ import {
 import { Button } from "@/components/ui/button";
 import MobileNavbar from "./MobileNavbar";
 import { ModeToggle } from "@/components/mode-toggle";
+import { useAuthStore } from "@/features/auth/store";
+import { useCustomerWishlistStore } from "@/features/customer/wishlist/store";
+import CustomerWishlistDialog from "@/features/customer/wishlist/CustomerWishlistDialog";
 
 type NavItem = {
   label: string;
@@ -89,7 +93,29 @@ const NavTextLink = ({
 };
 
 const CustomerNavbar = () => {
-  const { isSignedIn, signOut } = useAuth();
+  const { isSignedIn, signOut, isLoaded } = useAuth();
+  const { isBootstrapped } = useAuthStore();
+
+  const {
+    items: wishlistItems,
+    loadWishlist,
+    clear: clearWishlist,
+    setOpen: setWishlistOpen,
+  } = useCustomerWishlistStore((state) => state);
+
+  useEffect(() => {
+    if (!isLoaded || !isBootstrapped) return;
+
+    if (!isSignedIn) {
+      clearWishlist();
+      return;
+    }
+
+    void loadWishlist();
+  }, [clearWishlist, isBootstrapped, isSignedIn, isLoaded, loadWishlist]);
+
+  const showSignInUi = isLoaded && isBootstrapped && isSignedIn;
+  const wishlistCount = wishlistItems.length;
 
   return (
     <header className={headerClass}>
@@ -110,7 +136,16 @@ const CustomerNavbar = () => {
         <nav className={desktopNav}>
           <ModeToggle />
 
-          <NavTextLink href="/wishlist" label="Wishlist" icon={Heart} />
+          {showSignInUi ? (
+            <button
+              type="button"
+              className={iconLink}
+              onClick={() => setWishlistOpen(true)}
+            >
+              <Heart className="size-5" />
+              <span className={wishlistBadge}>{wishlistCount}</span>
+            </button>
+          ) : null}
 
           {isSignedIn ? (
             <DropdownMenu>
@@ -128,6 +163,13 @@ const CustomerNavbar = () => {
                   <Link to={"/account"} className={dropdownItemLink}>
                     <User className="size-3" />
                     <span>My Account</span>
+                  </Link>
+                </DropdownMenuItem>
+
+                <DropdownMenuItem>
+                  <Link to={"/account"} className={dropdownItemLink}>
+                    <ShoppingBasket className="size-3" />
+                    <span>My Oders</span>
                   </Link>
                 </DropdownMenuItem>
 
@@ -151,6 +193,8 @@ const CustomerNavbar = () => {
         </nav>
 
         <MobileNavbar isSignedIn={!!isSignedIn} />
+
+        {showSignInUi ? <CustomerWishlistDialog /> : null}
       </div>
     </header>
   );

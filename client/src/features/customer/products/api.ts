@@ -46,6 +46,6 @@ export const getCustomerProducts = async (
 
 export const getCustomerProductDetails = async (productId: string) => {
   return apiGet<CustomerProductDetailsResponse>(
-    `/api/customer/product/${productId}`,
+    `/api/customer/products/${productId}`,
   );
 };

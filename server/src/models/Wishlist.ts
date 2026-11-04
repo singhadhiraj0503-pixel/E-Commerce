@@ -27,5 +27,5 @@ const wishlistSchema = new mongoose.Schema<WishlistField>(
 );
 
 export const Wishlist =
-  (mongoose.models.Cart as mongoose.Model<WishlistField> | undefined) ??
+  (mongoose.models.Wishlist as mongoose.Model<WishlistField> | undefined) ??
   model<WishlistField>("Wishlist", wishlistSchema);
