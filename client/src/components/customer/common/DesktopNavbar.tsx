@@ -24,6 +24,8 @@ import { ModeToggle } from "@/components/mode-toggle";
 import { useAuthStore } from "@/features/auth/store";
 import { useCustomerWishlistStore } from "@/features/customer/wishlist/store";
 import CustomerWishlistDialog from "@/features/customer/wishlist/CustomerWishlistDialog";
+import { useCustomerProfileStore } from "@/features/customer/profile/store";
+import CustomerProfileDialog from "../profile/CustomerProfileDialog";
 
 type NavItem = {
   label: string;
@@ -103,16 +105,28 @@ const CustomerNavbar = () => {
     setOpen: setWishlistOpen,
   } = useCustomerWishlistStore((state) => state);
 
+  const { openProfile, clear: clearProfile } = useCustomerProfileStore(
+    (state) => state,
+  );
+
   useEffect(() => {
     if (!isLoaded || !isBootstrapped) return;
 
     if (!isSignedIn) {
       clearWishlist();
+      clearProfile();
       return;
     }
 
     void loadWishlist();
-  }, [clearWishlist, isBootstrapped, isSignedIn, isLoaded, loadWishlist]);
+  }, [
+    clearWishlist,
+    isBootstrapped,
+    clearProfile,
+    isSignedIn,
+    isLoaded,
+    loadWishlist,
+  ]);
 
   const showSignInUi = isLoaded && isBootstrapped && isSignedIn;
   const wishlistCount = wishlistItems.length;
@@ -159,11 +173,12 @@ const CustomerNavbar = () => {
                 align="start"
                 className={accountDropdownContent}
               >
-                <DropdownMenuItem>
-                  <Link to={"/account"} className={dropdownItemLink}>
-                    <User className="size-3" />
-                    <span>My Account</span>
-                  </Link>
+                <DropdownMenuItem
+                  onClick={() => void openProfile()}
+                  className={dropdownItemLink}
+                >
+                  <User className="size-3" />
+                  <span>My Account</span>
                 </DropdownMenuItem>
 
                 <DropdownMenuItem>
@@ -195,6 +210,7 @@ const CustomerNavbar = () => {
         <MobileNavbar isSignedIn={!!isSignedIn} />
 
         {showSignInUi ? <CustomerWishlistDialog /> : null}
+        {showSignInUi ? <CustomerProfileDialog /> : null}
       </div>
     </header>
   );

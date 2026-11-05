@@ -5,7 +5,7 @@ import PublicOnlyLayout from "./components/auth/PublicOnlyLayout";
 import SignInPage from "./pages/auth/Sign-in";
 import SignUpPage from "./pages/auth/Sign-up";
 import ProtectedLayout from "./components/auth/ProtectedLayout";
-import Profile from "./pages/customer/Profile";
+// import Profile from "./pages/customer/Profile";
 import RoleGuardLayout from "./components/auth/RoleGuardLayout";
 import AdminLayout from "./components/layout/AdminLayout";
 import AdminDashboard from "./pages/admin/AdminDashboard";
@@ -53,10 +53,10 @@ export const router = createBrowserRouter([
       {
         element: <ProtectedLayout />,
         children: [
-          {
-            path: "profile",
-            element: <Profile />,
-          },
+          // {
+          //   path: "profile",
+          //   element: <Profile />,
+          // },
         ],
       },
     ],

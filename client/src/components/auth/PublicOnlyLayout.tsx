@@ -19,7 +19,8 @@ const PublicOnlyLayout = () => {
     isSignedIn &&
     (location.pathname === "/sign-in" || location.pathname === "/sign-up")
   ) {
-    return <Navigate to={"/profile"} replace />;
+    // return <Navigate to={"/profile"} replace />;
+    return <Navigate to={"/"} replace />;
   }
 
   return <Outlet />;
