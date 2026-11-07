@@ -8,6 +8,7 @@ import {
   removeCustomerWishlistItem,
 } from "../../wishlist/api";
 import { useCustomerWishlistStore } from "../../wishlist/store";
+import { useCustomerCartAndCheckoutStore } from "../../cart-and-checkout/store";
 
 type CustomerProductDetailsStore = {
   loading: boolean;
@@ -122,31 +123,31 @@ export const useCustomerProductDetailsStore =
       }
     },
 
-    // addToCart: async (isLoaded, isBootatraped, isSignedIn) => {
-    //   const { data, selectedColor, selectedSize } = get();
-    //   const product = data?.product ?? null;
+    addToCart: async (isLoaded, isBootatraped, isSignedIn) => {
+      const { data, selectedColor, selectedSize } = get();
+      const product = data?.product ?? null;
 
-    //   if (!product || product.stock < 1) return;
+      if (!product || product.stock < 1) return;
 
-    //   if (!isLoaded || !isBootatraped) {
-    //     toast.error("Try again");
-    //     return;
-    //   }
+      if (!isLoaded || !isBootatraped) {
+        toast.error("Try again");
+        return;
+      }
 
-    //   await useCustomerCartAndCheckoutStore.getState().addItem(
-    //     {
-    //       productId: product._id,
-    //       quantity: 1,
-    //       color: selectedColor || undefined,
-    //       size: selectedSize || undefined,
-    //       title: product.title,
-    //       brand: product.brand,
-    //       image: getCoverImage(product),
-    //       finalPrice: product.salePercentage
-    //         ? product.price - (product.price * product.salePercentage) / 100
-    //         : product.price,
-    //     },
-    //     isSignedIn,
-    //   );
-    // },
+      await useCustomerCartAndCheckoutStore.getState().addItem(
+        {
+          productId: product._id,
+          quantity: 1,
+          color: selectedColor || undefined,
+          size: selectedSize || undefined,
+          title: product.title,
+          brand: product.brand,
+          image: getCoverImage(product),
+          finalPrice: product.salePercentage
+            ? product.price - (product.price * product.salePercentage) / 100
+            : product.price,
+        },
+        isSignedIn,
+      );
+    },
   }));

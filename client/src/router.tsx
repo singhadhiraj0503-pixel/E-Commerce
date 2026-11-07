@@ -15,6 +15,7 @@ import AdminOrders from "./pages/admin/AdminOrders";
 import AdminSettings from "./pages/admin/AdminSettings";
 import Collections from "./pages/customer/Collections";
 import CollectionDetails from "./pages/customer/CollectionDetails";
+import CustomerOrderSuccess from "./pages/customer/CustomerOrderSuccess";
 
 export const router = createBrowserRouter([
   {
@@ -57,6 +58,10 @@ export const router = createBrowserRouter([
           //   path: "profile",
           //   element: <Profile />,
           // },
+          {
+            path: "order-success",
+            element: <CustomerOrderSuccess />,
+          },
         ],
       },
     ],

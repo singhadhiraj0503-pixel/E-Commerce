@@ -270,9 +270,9 @@ export const increaseCartItem = asyncHandler(
   async (req: Request, res: Response) => {
     const dbUser = await getDbUserFromReq(req);
 
-    const productId = String(req.body.productId || "").trim();
-    const colorValue = String(req.body.color || "").trim();
-    const sizeValue = String(req.body.size || "").trim();
+    const productId = String(req.params.productId || "").trim();
+    const colorValue = String(req.query.color || "").trim();
+    const sizeValue = String(req.query.size || "").trim();
 
     requireText(productId, "Product ID is required");
 
@@ -319,9 +319,9 @@ export const decreaseCartItem = asyncHandler(
   async (req: Request, res: Response) => {
     const dbUser = await getDbUserFromReq(req);
 
-    const productId = String(req.body.productId || "").trim();
-    const colorValue = String(req.body.color || "").trim();
-    const sizeValue = String(req.body.size || "").trim();
+    const productId = String(req.params.productId || "").trim();
+    const colorValue = String(req.query.color || "").trim();
+    const sizeValue = String(req.query.size || "").trim();
 
     requireText(productId, "Product ID is required");
 
@@ -365,9 +365,9 @@ export const deleteCartItem = asyncHandler(
   async (req: Request, res: Response) => {
     const dbUser = await getDbUserFromReq(req);
 
-    const productId = String(req.body.productId || "").trim();
-    const colorValue = String(req.body.color || "").trim();
-    const sizeValue = String(req.body.size || "").trim();
+    const productId = String(req.params.productId || "").trim();
+    const colorValue = String(req.query.color || "").trim();
+    const sizeValue = String(req.query.size || "").trim();
 
     requireText(productId, "Product ID is required");
 

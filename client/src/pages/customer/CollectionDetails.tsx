@@ -46,6 +46,7 @@ const CollectionDetails = () => {
     selectedSize,
     setSelectedSize,
     toggleWishlist,
+    addToCart,
   } = useCustomerProductDetailsStore((state) => state);
 
   const wishlistItems = useCustomerWishlistStore((state) => state.items);

@@ -23,9 +23,11 @@ import MobileNavbar from "./MobileNavbar";
 import { ModeToggle } from "@/components/mode-toggle";
 import { useAuthStore } from "@/features/auth/store";
 import { useCustomerWishlistStore } from "@/features/customer/wishlist/store";
-import CustomerWishlistDialog from "@/features/customer/wishlist/CustomerWishlistDialog";
+import CustomerWishlistDialog from "@/components/customer/wishlist/CustomerWishlistDialog";
 import { useCustomerProfileStore } from "@/features/customer/profile/store";
 import CustomerProfileDialog from "../profile/CustomerProfileDialog";
+import { useCustomerCartAndCheckoutStore } from "@/features/customer/cart-and-checkout/store";
+import CustomerCartAndCheckoutDrawer from "../cart-and-checkout/CustomerCartAndCheckoutDrawer";
 
 type NavItem = {
   label: string;
@@ -109,8 +111,14 @@ const CustomerNavbar = () => {
     (state) => state,
   );
 
+  const { setOpen, cart, loadCart } = useCustomerCartAndCheckoutStore(
+    (state) => state,
+  );
+
   useEffect(() => {
     if (!isLoaded || !isBootstrapped) return;
+
+    void loadCart(Boolean(isSignedIn));
 
     if (!isSignedIn) {
       clearWishlist();
@@ -126,6 +134,7 @@ const CustomerNavbar = () => {
     isSignedIn,
     isLoaded,
     loadWishlist,
+    loadCart,
   ]);
 
   const showSignInUi = isLoaded && isBootstrapped && isSignedIn;
@@ -201,16 +210,17 @@ const CustomerNavbar = () => {
             <NavTextLink href="/sign-in" label="Login" icon={LogIn} />
           )}
 
-          <Link to={"/cart"} className={iconLink}>
+          <div onClick={() => setOpen(true)} className={iconLink}>
             <ShoppingCart className="szie-3.5" />
-            <span className={cartBadge}>{0}</span>
-          </Link>
+            <span className={cartBadge}>{cart?.items?.length}</span>
+          </div>
         </nav>
 
         <MobileNavbar isSignedIn={!!isSignedIn} />
 
         {showSignInUi ? <CustomerWishlistDialog /> : null}
         {showSignInUi ? <CustomerProfileDialog /> : null}
+        <CustomerCartAndCheckoutDrawer />
       </div>
     </header>
   );

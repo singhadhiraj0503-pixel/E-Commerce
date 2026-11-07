@@ -1,5 +1,5 @@
 import React from "react";
-import { useCustomerWishlistStore } from "./store";
+import { useCustomerWishlistStore } from "../../../features/customer/wishlist/store";
 import {
   Dialog,
   DialogContent,
