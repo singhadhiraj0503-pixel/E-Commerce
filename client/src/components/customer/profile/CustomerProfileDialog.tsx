@@ -7,6 +7,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useCustomerCartAndCheckoutStore } from "@/features/customer/cart-and-checkout/store";
 import { useCustomerProfileStore } from "@/features/customer/profile/store";
 import { useUser } from "@clerk/react";
 import { Pencil, Plus, Trash2 } from "lucide-react";
@@ -73,7 +74,7 @@ const CustomerProfileDialog = () => {
 
   const { user } = useUser();
   const showForm = mode !== "none";
-  //   const { points } = useCustomerCartAndCheckoutStore(state => state);
+  const { points } = useCustomerCartAndCheckoutStore((state) => state);
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && closeProfile()}>
@@ -92,7 +93,7 @@ const CustomerProfileDialog = () => {
                 </p>
               </div>
 
-              <p className={pointsClass}>Points: </p>
+              <p className={pointsClass}>Points: {points}</p>
             </div>
           </section>
           <div className={showForm ? gridClass : singleGridClass}>
