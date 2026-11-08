@@ -1,6 +1,5 @@
 import { useAuthStore } from "@/features/auth/store";
 import { useAuth } from "@clerk/react";
-import React from "react";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 import CommonLoader from "../common/Loader";
 

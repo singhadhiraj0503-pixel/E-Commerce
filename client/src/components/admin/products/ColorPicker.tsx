@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { X } from "lucide-react";
-import React, { useState } from "react";
+import { useState } from "react";
 
 const wrapperClass = "space-y-3";
 
@@ -9,7 +9,7 @@ const headerClass = "space-y-1";
 
 const titleClass = "text-sm font-semibold text-foreground";
 
-const descriptionClass = "text-sm text-muted-foreground";
+// const descriptionClass = "text-sm text-muted-foreground";
 
 const actionsRowClass = "flex flex-wrap items-center gap-3";
 

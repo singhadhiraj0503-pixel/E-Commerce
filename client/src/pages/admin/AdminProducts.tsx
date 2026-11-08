@@ -4,7 +4,6 @@ import ProductsTable from "@/components/admin/products/ProductsTable";
 import ProductsToolbar from "@/components/admin/products/ProductsToolbar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useAdminProducts } from "@/features/admin/products/use-admin-products";
-import React from "react";
 
 const pageWrap = "space-y-6 p-6";
 

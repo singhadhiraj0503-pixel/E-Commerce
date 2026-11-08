@@ -9,7 +9,7 @@ import {
   PackageCheck,
   RotateCcw,
 } from "lucide-react";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 
 const statsItems = [
   {
@@ -45,9 +45,9 @@ const headerCardClass = "border-border bg-card";
 const wrapClass = "space-y-4";
 const titleClass = "flex items-center gap-2 text-2xl font-semibold";
 
-const headerRowClass =
-  "flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between";
-const subtitleClass = "text-sm text-muted-foreground";
+// const headerRowClass =
+//   "flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between";
+// const subtitleClass = "text-sm text-muted-foreground";
 const gridClass = "mt-6 grid gap-4 sm:grid-cols-2";
 const statCardClass = "border-border bg-card";
 const statContentClass = "flex items-start gap-4 p-6";

@@ -6,7 +6,7 @@ import {
   DrawerTitle,
 } from "@/components/ui/drawer";
 import { useCustomerCartAndCheckoutStore } from "@/features/customer/cart-and-checkout/store";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import CustomerCartItems from "./CustomerCartItems";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -45,7 +45,7 @@ const promoRowClass = "flex gap-2";
 const promoInputClass = "rounded-none";
 const actionClass = "shrink-0 space-y-3 border-t border-border px-5 py-4";
 const primaryButtonClass = "h-11 w-full";
-const secondaryButtonClass = "h-11 w-full rounded-none";
+// const secondaryButtonClass = "h-11 w-full rounded-none";
 
 const promoTitle =
   "flex items-center gap-2 text-sm font-medium text-foreground";

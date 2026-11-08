@@ -1,4 +1,3 @@
-import React from "react";
 import { Outlet } from "react-router-dom";
 import AdminSidebar from "../admin/common/AdminSidebar";
 import { UserButton } from "@clerk/react";

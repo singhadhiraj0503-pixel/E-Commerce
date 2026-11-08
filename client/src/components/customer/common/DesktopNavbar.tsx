@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import {
   Heart,
   LogIn,
@@ -57,8 +57,8 @@ const iconLink =
 
 const brandWrap = "flex shrink-0 items-center gap-3";
 
-const brandTitle =
-  "text-[25px] font-semibold tracking-[-0.02em] text-foreground";
+// const brandTitle =
+//   "text-[25px] font-semibold tracking-[-0.02em] text-foreground";
 
 const desktopCollectionsWrap = "ml-6 hidden lg:block";
 

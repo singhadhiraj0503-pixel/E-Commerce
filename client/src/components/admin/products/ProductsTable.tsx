@@ -11,7 +11,6 @@ import {
 import type { Product } from "@/features/admin/products/types";
 import { getCoverImages } from "@/features/admin/products/use-product-form";
 import { Pencil } from "lucide-react";
-import React from "react";
 
 const wrapperClass = "overflow-x-auto rounded-xl border border-border";
 
@@ -28,11 +27,11 @@ const imageBoxClass =
 
 const imageClass = "h-full w-full object-cover";
 
-const titleWrapClass = "space-y-1";
+// const titleWrapClass = "space-y-1";
 
-const titleClass = "font-medium text-foreground";
+// const titleClass = "font-medium text-foreground";
 
-const descriptionClass = "line-clamp-1 text-xs text-muted-foreground";
+// const descriptionClass = "line-clamp-1 text-xs text-muted-foreground";
 
 const editCellWrapClass = "flex justify-end";
 

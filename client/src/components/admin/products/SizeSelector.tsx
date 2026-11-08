@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import { SIZE_OPTIONS } from "@/features/admin/products/constants";
-import React from "react";
 
 const wrapperClass = "space-y-3";
 
@@ -8,7 +7,7 @@ const headerClass = "space-y-1";
 
 const titleClass = "text-sm font-semibold text-foreground";
 
-const descriptionClass = "text-sm text-muted-foreground";
+// const descriptionClass = "text-sm text-muted-foreground";
 
 const gridClass = "grid grid-cols-4 gap-2";
 

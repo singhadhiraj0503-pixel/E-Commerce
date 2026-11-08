@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Plus, Search } from "lucide-react";
-import React from "react";
 
 const wrapperClass =
   "flex flex-col gap-3 md:flex-row md:items-center md:justify-between";

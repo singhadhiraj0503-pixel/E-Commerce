@@ -7,7 +7,7 @@ import {
   Store,
   type LucideIcon,
 } from "lucide-react";
-import React from "react";
+// import React from "react";
 import { NavLink } from "react-router-dom";
 
 type AdminNavItem = {
@@ -34,7 +34,7 @@ const navItemBase =
   "flex h-11 items-center gap-3 px-4 text-[15px] font-medium transition-colors";
 
 const navItemDesktop = `${navItemBase} rounded-none`;
-const navItemMobile = navItemBase;
+// const navItemMobile = navItemBase;
 
 const activeItem = "bg-sidebar-primary text-sidebar-primary-foreground";
 const idleItem =

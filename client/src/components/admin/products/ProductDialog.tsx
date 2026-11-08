@@ -21,13 +21,11 @@ import type {
   Product,
   ProductStatus,
 } from "@/features/admin/products/types";
-import React from "react";
 import ColorPicker from "./ColorPicker";
 import SizeSelector from "./SizeSelector";
 import ImagePicker from "./ImagePicker";
 import { Button } from "@/components/ui/button";
 import { useProductForm } from "@/features/admin/products/use-product-form";
-import { Target } from "lucide-react";
 
 type ProductDialogProps = {
   open: boolean;
@@ -81,8 +79,6 @@ const ProductDialog = ({
     onSaved,
     product,
   });
-
-  // console.log(form);
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>

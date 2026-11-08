@@ -8,7 +8,7 @@ import { useCustomerProductDetailsStore } from "@/features/customer/products/det
 import { useCustomerWishlistStore } from "@/features/customer/wishlist/store";
 import { useAuth } from "@clerk/react";
 import { ArrowLeft } from "lucide-react";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 
 const pageWrapClass = "min-h-screen bg-background";
@@ -53,7 +53,7 @@ const CollectionDetails = () => {
 
   const product = data?.product ?? null;
   const relatedProducts = data?.relatedProducts ?? null;
-  const isWishlistActive = !!product
+  const isWishlistActive = product
     ? wishlistItems.some((item) => item.productId === product._id)
     : false;
 

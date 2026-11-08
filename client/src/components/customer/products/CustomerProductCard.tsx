@@ -8,7 +8,6 @@ import {
 } from "@/features/customer/products/product-list.shared";
 import type { CustomerProduct } from "@/features/customer/products/types";
 import { formatPrice } from "@/lib/utils";
-import React from "react";
 import { Link } from "react-router-dom";
 
 const cardClass =
@@ -39,7 +38,7 @@ const categoryClass = "text-sm text-muted-foreground";
 
 const priceRowClass = "flex items-center gap-2";
 
-const salePriceClass = "text-base font-semibold text-foreground";
+// const salePriceClass = "text-base font-semibold text-foreground";
 
 const originalPriceClass = "text-sm text-muted-foreground line-through";
 

@@ -4,7 +4,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { useAdminSettings } from "@/features/admin/settings/use-admin-settings";
 import { ImagePlus } from "lucide-react";
-import React from "react";
 
 const pageWrapClass = "min-h-screen bg-background";
 const contentContainerClass = "mx-auto max-w-7xl px-4 py-8";
@@ -21,14 +20,14 @@ const uploadIconWrapClass =
 const uploadIconClass = "h-6 w-6 text-primary";
 const uploadTextWrapClass = "space-y-2";
 const uploadHeadingClass = "text-base font-medium text-foreground";
-const uploadSubtextClass = "text-sm text-muted-foreground";
+// const uploadSubtextClass = "text-sm text-muted-foreground";
 const fileInputClass = "rounded cursor-pointer";
 const fileCountClass = "text-xs text-muted-foreground";
 const fullButtonClass = "w-full rounded cursor-pointer";
 const buttonClass = "rounded cursor-pointer";
 
-const errorBoxClass =
-  "border border-destructive/30 bg-destructive/10 p-4 text-sm text-foreground";
+// const errorBoxClass =
+//   "border border-destructive/30 bg-destructive/10 p-4 text-sm text-foreground";
 const emptyStateClass =
   "border border-border bg-background/40 p-6 text-sm text-muted-foreground";
 const tableHeaderClass = "flex flex-row items-center justify-between gap-3";
@@ -36,11 +35,11 @@ const tableHeaderClass = "flex flex-row items-center justify-between gap-3";
 const AdminSettings = () => {
   const {
     items,
-    files,
+    // files,
     setFiles,
     fileCountLabel,
     loading,
-    setLoading,
+    // setLoading,
     refreshBanners,
     handleUpload,
     uploading,

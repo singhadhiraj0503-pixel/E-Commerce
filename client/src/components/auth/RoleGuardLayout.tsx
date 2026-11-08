@@ -1,6 +1,5 @@
 import { useAuthStore } from "@/features/auth/store";
 import type { UserRole } from "@/lib/types";
-import React from "react";
 import { Navigate, Outlet } from "react-router-dom";
 import CommonLoader from "../common/Loader";
 

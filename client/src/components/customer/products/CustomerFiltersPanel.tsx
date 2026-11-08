@@ -8,7 +8,6 @@ import {
   type CustomerProductFilters,
   type FacetKey,
 } from "@/features/customer/products/product-list.shared";
-import React from "react";
 
 const panelWrapClass = "space-y-6 overflow-y-auto px-4 py-2 lg:px-0 lg:py-0";
 
@@ -39,11 +38,11 @@ const colorSwatchActiveClass = "border-primary ring-2 ring-primary/30";
 
 const colorSwatchInactiveClass = "border-border";
 
-const helperTextClass = "text-sm text-muted-foreground";
+// const helperTextClass = "text-sm text-muted-foreground";
 
 const sizesWrapClass = "flex flex-wrap gap-2";
 
-const sizeButtonClass = "min-w-12 rounded-none";
+// const sizeButtonClass = "min-w-12 rounded-none";
 
 type CustomerFiltersPanelProps = {
   categories: ProductCategory[];

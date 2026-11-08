@@ -1,7 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { getCoverImage } from "@/features/customer/products/product-list.shared";
 import type { CustomerProduct } from "@/features/customer/products/types";
-import React from "react";
 
 const galleryWrapClass = "space-y-4";
 
@@ -22,7 +21,7 @@ const thumbnailButtonActiveClass = "border-primary ring-2 ring-primary/30";
 
 const thumbnailButtonInactiveClass = "border-border/60";
 
-const thumbnailImageWrapClass = "aspect-square bg-muted";
+// const thumbnailImageWrapClass = "aspect-square bg-muted";
 
 type CustomerProductDetailsGalleryProps = {
   product: CustomerProduct;

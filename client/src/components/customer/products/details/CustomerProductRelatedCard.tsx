@@ -5,7 +5,6 @@ import {
 } from "@/features/customer/products/product-list.shared";
 import type { CustomerProduct } from "@/features/customer/products/types";
 import { formatPrice } from "@/lib/utils";
-import React from "react";
 import { Link } from "react-router-dom";
 
 const cardClass =

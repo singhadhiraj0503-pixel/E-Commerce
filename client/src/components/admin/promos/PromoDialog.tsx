@@ -8,7 +8,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import type { Promo, PromoFormValues } from "@/features/admin/promo/types";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 const dialogContentClass =
   "max-h-[92vh] overflow-y-auto border-border bg-background sm:max-w-2xl";
@@ -25,7 +25,7 @@ const fieldWrapClass = "space-y-2";
 
 const inputClass = "rounded";
 
-const errorTextClass = "text-sm text-destructive";
+// const errorTextClass = "text-sm text-destructive";
 
 const footerClass = "flex justify-end gap-3";
 

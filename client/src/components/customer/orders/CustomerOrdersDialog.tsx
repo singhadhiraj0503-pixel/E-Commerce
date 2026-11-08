@@ -22,7 +22,6 @@ import type {
 } from "@/features/customer/orders/types";
 import { formatPrice } from "@/lib/utils";
 import { ShoppingBasket } from "lucide-react";
-import React from "react";
 
 const dialogClass =
   "max-h-[92vh] overflow-y-auto border-border bg-background sm:max-w-3xl";

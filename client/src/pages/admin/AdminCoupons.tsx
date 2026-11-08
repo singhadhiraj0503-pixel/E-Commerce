@@ -3,7 +3,6 @@ import PromoTable from "@/components/admin/promos/PromoTable";
 import PromoToolbar from "@/components/admin/promos/PromoToolbar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useAdminPromos } from "@/features/admin/promo/use-admin-promo";
-import React from "react";
 
 const pageWrapClass = "space-y-6 p-6";
 
@@ -13,10 +12,10 @@ const cardHeaderClass = "space-y-4";
 
 const cardTitleClass = "text-xl";
 
-const cardContentClass = "space-y-4";
+// const cardContentClass = "space-y-4";
 
-const errorClass =
-  "rounded-none border border-destructive/20 bg-destructive/10 px-4 py-3 text-sm text-destructive";
+// const errorClass =
+//   "rounded-none border border-destructive/20 bg-destructive/10 px-4 py-3 text-sm text-destructive";
 
 const AdminCoupons = () => {
   const {
@@ -29,7 +28,7 @@ const AdminCoupons = () => {
     editingPromo,
     openCreateDialog,
     closePromoDialog,
-    refreshAll,
+    // refreshAll,
     savePromo,
     removePromo,
     saving,

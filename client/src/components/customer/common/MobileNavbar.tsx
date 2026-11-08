@@ -18,7 +18,6 @@ import {
   User,
   type LucideIcon,
 } from "lucide-react";
-import React from "react";
 import { Link } from "react-router-dom";
 
 type CustomerMobileNavbarProps = {

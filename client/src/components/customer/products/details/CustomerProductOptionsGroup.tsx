@@ -1,6 +1,5 @@
 import { getSwatchColor } from "@/features/customer/products/product-list.shared";
 import type { ProductSize } from "@/features/customer/products/types";
-import React from "react";
 
 const wrapClass = "flex flex-wrap gap-2";
 

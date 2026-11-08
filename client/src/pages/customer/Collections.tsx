@@ -21,7 +21,6 @@ import {
 import type { ProductSort } from "@/features/customer/products/types";
 import { useCustomerProductList } from "@/features/customer/products/use-customer-collections";
 import { SlidersHorizontal } from "lucide-react";
-import React from "react";
 
 const pageWrapClass = "min-h-screen bg-background";
 

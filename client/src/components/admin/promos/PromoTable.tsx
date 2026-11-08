@@ -9,7 +9,6 @@ import {
 } from "@/components/ui/table";
 import type { Promo } from "@/features/admin/promo/types";
 import { Pencil, Trash2 } from "lucide-react";
-import React from "react";
 
 const wrapClass = "overflow-x-auto rounded-xl border border-border";
 
@@ -56,8 +55,8 @@ const PromoTable = ({
             <TableHead>Min Order</TableHead>
             <TableHead>valid From</TableHead>
             <TableHead>Valid Till</TableHead>
-            <TableHead className="w-[80px] text-right">Edit</TableHead>
-            <TableHead className="w-[80px] text-right">Delete</TableHead>
+            <TableHead className="w-20 text-right">Edit</TableHead>
+            <TableHead className="w-20 text-right">Delete</TableHead>
           </TableRow>
         </TableHeader>
 

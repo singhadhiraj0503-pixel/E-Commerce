@@ -1,0 +1,159 @@
+import type { Types } from "mongoose";
+import type { UserRole } from "../models/User.js";
+import type { ProductSize } from "../models/Product.js";
+import type { OrderStatus, PaymentStatus } from "../models/Order.js";
+export interface Address {
+    fullName: string;
+    address: string;
+    state: string;
+    postalCode: string;
+    isDefault: boolean;
+}
+export interface UserDocument {
+    clerkUserId: string;
+    name?: string;
+    email?: string;
+    role: UserRole;
+    points: number;
+    addresses: Address[];
+}
+export type UploadedImage = {
+    url: string;
+    publicId: string;
+    isCover: boolean;
+};
+export type CartItem = {
+    product: Types.ObjectId;
+    quantity: number;
+    color?: string;
+    size?: ProductSize;
+};
+export type CartFields = {
+    user: Types.ObjectId;
+    items: CartItem[];
+    createdAt: Date;
+    updatedAt: Date;
+};
+export type WishlistField = {
+    user: Types.ObjectId;
+    products: Types.ObjectId[];
+    createdAt: Date;
+    updatedAt: Date;
+};
+export type ProductSort = "recent" | "price-low" | "price-high";
+export type ProductAppliedFilterListQuery = {
+    category?: string;
+    brand?: string;
+    color?: string;
+    size?: string;
+    sort?: ProductSort;
+};
+export type AddressItem = {
+    _id?: string;
+    fullName: string;
+    address: string;
+    state: string;
+    postalCode: string;
+    isDefault: boolean;
+};
+export type PromoDbItem = {
+    _id?: Types.ObjectId;
+    code: string;
+    percentage: number;
+    count: number;
+    minimumOrderValue: number;
+    startsAt: Date;
+    endsAt: Date;
+    createdAt?: Date;
+};
+export type ProductPreview = {
+    _id: string;
+    title: string;
+    brand: string;
+    price: number;
+    salePercentage: number;
+    images: Array<{
+        url: string;
+        isCover?: boolean;
+    }>;
+};
+export type CartPreviewItem = {
+    product: ProductPreview | null;
+    quantity: number;
+    color?: string;
+    size?: ProductSize;
+};
+export type SyncCartItemInput = {
+    productId?: string;
+    quantity?: number;
+    color?: string;
+    size?: ProductSize;
+};
+export type UserAddressRow = {
+    _id: Types.ObjectId;
+    fullName: string;
+    address: string;
+    state: string;
+    postalCode: string;
+};
+export type CheckoutUserRow = {
+    _id: Types.ObjectId;
+    name?: string;
+    email?: string;
+    points?: number;
+    addresses: UserAddressRow[];
+};
+export type CartRow = {
+    items: Array<{
+        product: Types.ObjectId;
+        quantity: number;
+        color?: string;
+        size?: ProductSize;
+    }>;
+};
+export type ProductRow = {
+    _id: Types.ObjectId;
+    price: number;
+    salePercentage: number;
+    stock: number;
+    status: "active" | "inactive";
+};
+export type PromoRow = {
+    code: string;
+    percentage: number;
+    count: number;
+    minimumOrderValue: number;
+    startsAt: Date;
+    endsAt: Date;
+};
+export type CustomerOrderRow = {
+    _id: Types.ObjectId;
+    totalItems: number;
+    totalAmount: number;
+    paymentStatus: PaymentStatus;
+    orderStatus: OrderStatus;
+    paidAt?: Date | null;
+    deliveredAt?: Date | null;
+    returnedAt?: Date | null;
+    createdAt: Date;
+};
+export type AdminBannerItem = {
+    _id: string;
+    imageUrl: string;
+    imagePublicId: string;
+    createdAt: string;
+};
+export type TotalSaleRow = {
+    _id: null;
+    totalSales: number;
+};
+export type BannerRow = {
+    _id: Types.ObjectId;
+    imageUrl: string;
+    createdAt: Date;
+};
+export type CategoryRow = {
+    _id: Types.ObjectId;
+    name: string;
+};
+//# sourceMappingURL=types.d.ts.map

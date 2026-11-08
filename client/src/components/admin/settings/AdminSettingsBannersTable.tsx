@@ -7,7 +7,6 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import type { AdminBanner } from "@/features/admin/settings/types";
-import React from "react";
 
 const tableWrapClass = "overflow-x-auto";
 const previewWrapClass =
