@@ -13,7 +13,7 @@ export const getAllOrders = asyncHandler(
   async (req: Request, res: Response) => {
     const dbUser = await getDbUserFromReq(req);
 
-    const orders = await Order.findOne({ user: dbUser._id } as any)
+    const orders = await Order.find({ user: dbUser._id } as any)
       .select(
         "totalItems totalAmount paymentStatus orderStatus  paidAt deliveredAt returnedAt createdAt",
       )

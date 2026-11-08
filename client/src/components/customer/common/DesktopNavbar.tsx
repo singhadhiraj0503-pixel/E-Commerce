@@ -28,6 +28,8 @@ import { useCustomerProfileStore } from "@/features/customer/profile/store";
 import CustomerProfileDialog from "../profile/CustomerProfileDialog";
 import { useCustomerCartAndCheckoutStore } from "@/features/customer/cart-and-checkout/store";
 import CustomerCartAndCheckoutDrawer from "../cart-and-checkout/CustomerCartAndCheckoutDrawer";
+import { useCustomerOrdersStore } from "@/features/customer/orders/store";
+import CustomerOrdersDialog from "../orders/CustomerOrdersDialog";
 
 type NavItem = {
   label: string;
@@ -115,6 +117,8 @@ const CustomerNavbar = () => {
     (state) => state,
   );
 
+  const { openOrders } = useCustomerOrdersStore((state) => state);
+
   useEffect(() => {
     if (!isLoaded || !isBootstrapped) return;
 
@@ -190,11 +194,12 @@ const CustomerNavbar = () => {
                   <span>My Account</span>
                 </DropdownMenuItem>
 
-                <DropdownMenuItem>
-                  <Link to={"/account"} className={dropdownItemLink}>
-                    <ShoppingBasket className="size-3" />
-                    <span>My Oders</span>
-                  </Link>
+                <DropdownMenuItem
+                  onClick={() => void openOrders()}
+                  className={dropdownItemLink}
+                >
+                  <ShoppingBasket className="size-3" />
+                  <span>My Oders</span>
                 </DropdownMenuItem>
 
                 <DropdownMenuItem
@@ -220,6 +225,7 @@ const CustomerNavbar = () => {
 
         {showSignInUi ? <CustomerWishlistDialog /> : null}
         {showSignInUi ? <CustomerProfileDialog /> : null}
+        {showSignInUi ? <CustomerOrdersDialog /> : null}
         <CustomerCartAndCheckoutDrawer />
       </div>
     </header>
