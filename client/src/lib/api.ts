@@ -29,9 +29,13 @@ api.interceptors.request.use(async (config) => {
     return config;
   }
 
+  // if (token) {
+  //   config.headers = config.headers || {};
+  //   config.headers.Authorization = `Bearer ${token}`;
+  // }
+
   if (token) {
-    config.headers = config.headers || {};
-    config.headers.Authorization = `Bearer ${token}`;
+    config.headers.set("Authorization", `Bearer ${token}`);
   }
 
   return config;
