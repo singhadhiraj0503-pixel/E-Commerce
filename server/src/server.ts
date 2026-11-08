@@ -79,6 +79,7 @@ const mainEntryFunction = async () => {
   app.use("/api/admin", adminDashboardRouter);
 
   // Customer routes
+  app.use("/api/customer", customerHomeRouter);
   app.use("/api/customer", customerProductRouter);
   app.use("/api/customer", customerAddressRouter);
   app.use("/api/customer", customerPromoRouter);
@@ -86,7 +87,6 @@ const mainEntryFunction = async () => {
   app.use("/api/customer", customerCheckoutRouter);
   app.use("/api/customer", customerOrderRouter);
   app.use("/api/customer", customerCheckoutWithPointsRouter);
-  app.use("/api/customer", customerHomeRouter);
 
   app.use(notFOund);
   app.use(errorHandler);
