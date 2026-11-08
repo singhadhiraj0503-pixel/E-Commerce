@@ -122,10 +122,28 @@ export const useCustomerProductList = () => {
 
   // available colors
 
+  // const loadAvailableColors = async () => {
+  //   try {
+  //     setLoading(true);
+  //     const data = await getCustomerProducts();
+  //     const uniqueColors = new Set<string>();
+
+  //     (data ?? []).forEach((item) => {
+  //       item.colors.forEach((color) => uniqueColors.add(color));
+  //     });
+
+  //     setAvailableColors(
+  //       Array.from(uniqueColors).sort((a, b) => a.localeCompare(b)),
+  //     );
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
   const loadAvailableColors = async () => {
     try {
-      setLoading(true);
       const data = await getCustomerProducts();
+
       const uniqueColors = new Set<string>();
 
       (data ?? []).forEach((item) => {
@@ -135,8 +153,9 @@ export const useCustomerProductList = () => {
       setAvailableColors(
         Array.from(uniqueColors).sort((a, b) => a.localeCompare(b)),
       );
-    } finally {
-      setLoading(false);
+    } catch (error) {
+      console.error("Failed to load available colors:", error);
+      setAvailableColors([]);
     }
   };
 

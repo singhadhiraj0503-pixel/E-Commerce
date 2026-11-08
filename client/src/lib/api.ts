@@ -16,26 +16,47 @@ const api = axios.create({
   withCredentials: false,
 });
 
+// api.interceptors.request.use(async (config) => {
+//   if (!tokenGetter) {
+//     console.warn("Clerk token getter has not been initialized.");
+//     return config;
+//   }
+
+//   const token = await tokenGetter();
+
+//   if (!token) {
+//     console.warn("No Clerk session token is available.");
+//     return config;
+//   }
+
+//   // if (token) {
+//   //   config.headers = config.headers || {};
+//   //   config.headers.Authorization = `Bearer ${token}`;
+//   // }
+
+//   if (token) {
+//     config.headers.set("Authorization", `Bearer ${token}`);
+//   }
+
+//   return config;
+// });
+
 api.interceptors.request.use(async (config) => {
   if (!tokenGetter) {
-    console.warn("Clerk token getter has not been initialized.");
     return config;
   }
 
-  const token = await tokenGetter();
+  try {
+    const token = await tokenGetter();
 
-  if (!token) {
-    console.warn("No Clerk session token is available.");
-    return config;
-  }
-
-  // if (token) {
-  //   config.headers = config.headers || {};
-  //   config.headers.Authorization = `Bearer ${token}`;
-  // }
-
-  if (token) {
-    config.headers.set("Authorization", `Bearer ${token}`);
+    if (token) {
+      config.headers.set("Authorization", `Bearer ${token}`);
+    }
+  } catch (error) {
+    console.warn(
+      "Unable to retrieve Clerk token. Continuing without authentication.",
+      error,
+    );
   }
 
   return config;

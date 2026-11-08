@@ -54,6 +54,8 @@ export const useCustomerProductDetailsStore =
           selectedColor: "",
           selectedSize: "",
         });
+
+        return;
       }
 
       set({
