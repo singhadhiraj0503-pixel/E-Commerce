@@ -126,7 +126,7 @@ const Home = () => {
             </div>
           </section>
 
-          {!!data.categories.length ? (
+          {data.categories.length ? (
             <section>
               <div className={sectionHeadClass}>
                 <p className={sectionEyebrowClass}>Categories</p>
@@ -159,7 +159,7 @@ const Home = () => {
             </section>
           ) : null}
 
-          {!!data.coupons.length ? (
+          {data.coupons.length ? (
             <section>
               <div className={sectionHeadClass}>
                 <p className={sectionEyebrowClass}>Offers</p>
@@ -188,7 +188,7 @@ const Home = () => {
             </section>
           ) : null}
 
-          {!!data.recentProducts.length ? (
+          {data.recentProducts.length ? (
             <section>
               <div className={sectionHeadClass}>
                 <p className={sectionEyebrowClass}>Latest</p>
